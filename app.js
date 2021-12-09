@@ -84,7 +84,8 @@ function displayGoblins() {
             //         -- add class of dead - disable click, make opaque
             if (eachGoblin.HP === 0) {
                 defeatedCount++;
-                goblinDiv.classList.add('dead-goblin');
+                goblinDiv.classList.add('dead-goblin'); //????????????????????????
+                console.log(goblinDiv);
             }
 
             //     -- Check to see if Hero HP = 0
@@ -93,6 +94,7 @@ function displayGoblins() {
             if (heroHP === 0) {
                 alert('You died! GAME OVER!');
                 heroImg.classList.add('dead-hero');
+                goblinListEl.classList.add('dead-goblin');
             }
 
             //     -- Update the Goblin Display
