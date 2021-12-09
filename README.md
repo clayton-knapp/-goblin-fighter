@@ -23,3 +23,59 @@ Additional considerations:
   - What needs to live in a persistence layer?
 - Is there some state we need to initialize?
 - Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+
+HTML Plan
+-- Hero Div
+    -- Hero HP
+    -- Hero Image
+-- Defeated Goblins DIV
+    --Show # of defeated Goblins
+-- Add a New Goblin
+    -- Form with Input and Button
+-- Display Goblins Div
+    -- Displays the list of Goblins in the array
+
+EVENTS
+-- Enter New Goblin Submit
+    -- default form behavior
+    -- Grabs name input value and stores in a new goblin object
+    -- pushes new goblin object into goblin array
+    -- updates DOM to display Goblins - call display func which calls render func
+
+-- Click on Goblin
+    -- Run math to see if Goblin hit Hero. if so decremenent hero HP
+    -- Display alert if Goblin hit Hero
+    -- Run math to see if Hero hit Goblin, is so decrement goblin HP
+    -- Display alert if Hero hit Goblin
+    -- Check to see if Goblin HP = 0
+        -- if so increment defeated Goblin count
+        -- add class of dead - disable click, make opaque
+    -- Check to see if Hero HP = 0
+        -- if so alert Game over
+        -- make class of hero dead - rotate image?
+    -- Update the Goblin Display
+    -- Update the defeatedCount Display
+
+
+
+
+If goblin HP = 0, then disable click
+
+FUNCTIONS
+-- Display Function
+    -- clears the DOM
+    -- iterates with for loop through array
+    -- sends each object to render function which returns a Node for each goblin
+    -- appends the returned node to the goblin list
+
+-- Render Function
+    -- takes in a goblin object (name + HP)
+    -- creates 4 divs, 1 container, 1 p for HP, 1p for name, 1 for emoji
+    -- add text content of HP and name to p divs
+    -- append the divs together
+    -- return appended node
+
+
+    STILL LETS HERO HP GO NEGATIVE AFTER GAME OVER
+    FIX BUG OF DEAD CLASS NOT ADDED TO GOBLIN
