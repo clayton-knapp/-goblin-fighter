@@ -33,25 +33,19 @@ body {
 
 main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: calc(var(--footer-height));
+    background-image: url('../assets/cave.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 100%; /* ??????????????????? */
+    min-height: 800px;
+    padding: 0px;
+    margin: 0px;
 }
 
-section {
-    background-color: var(--color5);
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin-top: var(--gutter);
-    margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
-}
 
 header {
     display: flex;
@@ -78,7 +72,7 @@ header img {
 p {
     margin: var(--gutter);
 }
-  
+
 footer {
     position: fixed;
     width: 100%;
@@ -88,4 +82,149 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
+}
+
+section {
+    /* background-color: var(--color5); */
+    /* max-width: 80%; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    /* padding-top: var(--gutter);
+    padding-bottom: var(--gutter);
+    margin-top: var(--gutter);
+    margin-bottom: var(--gutter); */
+    /* border: solid 2px var(--color1); */
+}
+
+/* .big-container {
+
+    width: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    justify-items: space-between;
+    align-items: space-between;
+} */
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%
+}
+
+.right {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 50px;
+    overflow: scroll;
+}
+
+.big-container div {
+    padding: 20px;
+    /* margin: 100px; */
+    /* padding: 100px; */
+}
+
+.defeated {
+}
+
+.defeated p {
+    color: white;
+    font-size: 2rem;
+}
+
+.hero-container {
+    /* height: 800px; */
+    margin-left: 20px;
+}
+
+.hero-container p {
+    font-size: 4rem;
+    color: white;
+    display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    margin: 0px;
+    padding: 0px;
+}
+.hero-image {
+    width: 500px;
+    height: 500px;
+    /* background-image: url('../assets/wizard.png'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain; 
+}
+
+.new-goblins {
+}
+
+
+#new-goblin-form {
+    background-color: white;
+    height: 70px;
+    border: solid 1px orange;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.goblin-list {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.goblin-container {
+    border: 5px solid red;
+    width: 175px;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+.goblin-container p {
+    padding: 0px;
+    margin: 3px;
+}
+
+.emoji {
+    font-size: 4rem;
+}
+
+.dead-goblin {
+    opacity: .4;
+    pointer-events: none;
+}
+
+.young {
+    background-image: url('../assets/wizard-young.png');
+}
+
+.old {
+    background-image: url('../assets/wizard-old.png');
+}
+
+.dead-hero {
+    background-image: url('../assets/wizard-dead.png');
+    opacity: .5;
+    transform: rotate(90deg)
 }
