@@ -22,7 +22,7 @@ export function renderGoblin(eachGoblin) {
 
 
     // checks if goblin HP is 0 and if so adds dead class
-    if (eachGoblin.HP === 0) {
+    if (eachGoblin.HP <= 0) {
         goblinContainer.classList.add('dead-goblin');
     }
 

@@ -6,6 +6,7 @@ import { generateGoblin } from './utils.js';
 const defeatedCountSpan = document.querySelector('#defeated-count-display');
 const newGoblinForm = document.querySelector('#new-goblin-form');
 const heroHPEl = document.querySelector('#hero-HP-display');
+const heroStrengthEl = document.querySelector('#hero-strength-display');
 const heroImg = document.querySelector('.hero-image');
 const goblinListEl = document.querySelector('.goblin-list');
 
@@ -66,8 +67,8 @@ function displayGoblins() {
             //     -- Run math to see if Hero hit Goblin, is so decrement goblin HP
             //     -- Display alert if Hero hit Goblin
             if (Math.random() > eachGoblin.agility) {
-                eachGoblin.HP--;
-                alert('You hit the Goblin and did 1 Damage!');
+                eachGoblin.HP = eachGoblin.HP - (defeatedCount + 1);
+                alert(`You hit the Goblin and did ${defeatedCount + 1} Damage!`);
             } else {
                 alert('You missed the Goblin and dealt no Damage');
             }
@@ -84,7 +85,7 @@ function displayGoblins() {
             //     -- Check to see if Goblin HP = 0
             //         -- if so increment defeated Goblin count
             //         -- add class of dead - disable click, make opaque -- has to happen in render function????
-            if (eachGoblin.HP === 0) {
+            if (eachGoblin.HP <= 0) {
                 // console.log(eachGoblin);
                 defeatedCount++;
             }
@@ -117,6 +118,7 @@ function displayGoblins() {
 
 function displayHero() {
     heroHPEl.textContent = heroHP;
+    heroStrengthEl.textContent = defeatedCount + 1;
     if (heroHP > 5) {
         heroImg.classList.add('young');
     }
