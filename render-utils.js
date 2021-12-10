@@ -5,20 +5,27 @@ export function renderGoblin(eachGoblin) {
     const goblinNameEl = document.createElement('p');
     const goblinHPEl = document.createElement('p');
     const goblinEmoji = document.createElement('p');
+    const goblinStrengthEl = document.createElement('p');
+    const goblinAgilityEl = document.createElement('p');
+    const goblinDexterityEl = document.createElement('p');
 
     // -- add text content of HP and name to p divs
     goblinNameEl.textContent = eachGoblin.name;
-    goblinHPEl.textContent = 'HP: ' + eachGoblin.HP;
+    goblinHPEl.textContent = 'Health: ' + eachGoblin.HP;
     goblinEmoji.textContent = eachGoblin.type;
-    // if (Math.random() >= 0.5){
-    //     goblinEmoji.textContent = '👹';
-    // } else {
-    //     goblinEmoji.textContent = '👿';
-    // }
+    goblinStrengthEl.textContent = 'Strength: ' + eachGoblin.strength;
+    goblinAgilityEl.textContent = 'Agility: ' + eachGoblin.agility;
+    goblinDexterityEl.textContent = 'Dexterity: ' + eachGoblin.dexterity;
 
     //add classes to style
     goblinContainer.classList.add('goblin-container');
     goblinEmoji.classList.add('emoji');
+
+    goblinHPEl.classList.add('stats');
+    goblinStrengthEl.classList.add('stats');
+    goblinAgilityEl.classList.add('stats');
+    goblinDexterityEl.classList.add('stats');
+
 
 
     // checks if goblin HP is 0 and if so adds dead class
@@ -27,7 +34,7 @@ export function renderGoblin(eachGoblin) {
     }
 
     // -- append the divs together
-    goblinContainer.append(goblinNameEl, goblinHPEl, goblinEmoji);
+    goblinContainer.append(goblinNameEl, goblinHPEl, goblinStrengthEl, goblinAgilityEl, goblinDexterityEl, goblinEmoji);
 
     // -- return appended node
     return goblinContainer;
