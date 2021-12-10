@@ -16,15 +16,18 @@ let defeatedCount = 0;
 let goblinArr = [
     {
         name: 'Meep!',
-        HP: 3
+        HP: 3,
+        type: '👹'
     },
     {
         name: 'Thwapp',
-        HP: 3
+        HP: 3,
+        type: '😈'
     },
     {
         name: 'Gary',
-        HP: 3
+        HP: 3,
+        type: '👺'
     }
 ];
 
@@ -40,7 +43,24 @@ newGoblinForm.addEventListener('submit', (e)=>{
     //     -- Grabs name input value and stores in a new goblin object
     const data = new FormData(newGoblinForm);
     let goblinName = data.get('new-goblin-name');
-    let newGoblinObj = { name: goblinName, HP: 3 };
+
+    //generate random goblin type
+    let goblinType = '';
+    //generate random number between 1-4
+    let randomNumber = Math.ceil(Math.random() * 4);
+
+    if (randomNumber === 1) {
+        goblinType = '👹';
+    } else if (randomNumber === 2) {
+        goblinType = '😈';
+    } else if (randomNumber === 3) {
+        goblinType = '👺';
+    } else if (randomNumber === 4) {
+        goblinType = '👾';
+    }
+
+
+    let newGoblinObj = { name: goblinName, HP: 3, type: goblinType };
 
     //     -- pushes new goblin object into goblin array
     goblinArr.push(newGoblinObj);
@@ -63,7 +83,7 @@ function displayGoblins() {
         const goblinDiv = renderGoblin(eachGoblin);
 
         // -- Click on Goblin
-        goblinDiv.addEventListener('click', ()=> {
+        goblinDiv.addEventListener('click', (e)=> {
             //     -- Run math to see if Hero hit Goblin, is so decrement goblin HP
             //     -- Display alert if Hero hit Goblin
             if (Math.random() > 0.25) {
@@ -86,8 +106,8 @@ function displayGoblins() {
             //         -- if so increment defeated Goblin count
             //         -- add class of dead - disable click, make opaque -- has to happen in render function????
             if (eachGoblin.HP === 0) {
+                console.log(eachGoblin);
                 defeatedCount++;
-                goblinDiv.classList.add('dead-goblin'); //????????????????????????
             }
 
             //     -- Check to see if Hero HP = 0

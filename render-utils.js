@@ -9,7 +9,7 @@ export function renderGoblin(eachGoblin) {
     // -- add text content of HP and name to p divs
     goblinNameEl.textContent = eachGoblin.name;
     goblinHPEl.textContent = 'HP: ' + eachGoblin.HP;
-    goblinEmoji.textContent = '👹';
+    goblinEmoji.textContent = eachGoblin.type;
     // if (Math.random() >= 0.5){
     //     goblinEmoji.textContent = '👹';
     // } else {
@@ -21,9 +21,9 @@ export function renderGoblin(eachGoblin) {
     goblinEmoji.classList.add('emoji');
 
 
-    //checks if goblin HP is 0 and if so adds dead class
+    // checks if goblin HP is 0 and if so adds dead class
     if (eachGoblin.HP === 0) {
-        goblinContainer.classList.add('dead-goblin'); //????????????????????????
+        goblinContainer.classList.add('dead-goblin');
     }
 
     // -- append the divs together
