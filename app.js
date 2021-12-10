@@ -66,20 +66,20 @@ function displayGoblins() {
         goblinDiv.addEventListener('click', (e)=> {
             //     -- Run math to see if Hero hit Goblin, is so decrement goblin HP
             //     -- Display alert if Hero hit Goblin
-            if (Math.random() > eachGoblin.agility) {
+            if (Math.ceil(Math.random() * 10) >= eachGoblin.agility) {
                 eachGoblin.HP = eachGoblin.HP - (defeatedCount + 1);
-                alert(`You hit the Goblin and did ${defeatedCount + 1} Damage!`);
+                alert(`You hit ${eachGoblin.name} and did ${defeatedCount + 1} Damage!`);
             } else {
-                alert('You missed the Goblin and dealt no Damage');
+                alert(`You missed ${eachGoblin.name} and dealt no Damage`);
             }
 
             //     -- Run math to see if Goblin hit Hero. if so decremenent hero HP by generated strength of goblin
             //     -- Display alert if Goblin hit Hero
-            if (eachGoblin.dexterity > Math.random()) {
+            if (eachGoblin.dexterity > Math.ceil(Math.random() * 10)) {
                 heroHP = heroHP - eachGoblin.strength;
-                alert(`The Goblin hit you and did ${eachGoblin.strength} Damage!`);
+                alert(`${eachGoblin.name} hit you and did ${eachGoblin.strength} Damage!`);
             } else {
-                alert('The Goblin missed you and dealt no Damage');
+                alert(`${eachGoblin.name} missed you and dealt no Damage`);
             }
 
             //     -- Check to see if Goblin HP = 0
