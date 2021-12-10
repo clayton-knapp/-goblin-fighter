@@ -12,7 +12,7 @@ const goblinListEl = document.querySelector('.goblin-list');
 
 // let state
 
-let heroHP = 10;
+let heroHP = 100;
 let defeatedCount = 0;
 
 let goblinArr = [
@@ -33,7 +33,11 @@ newGoblinForm.addEventListener('submit', (e)=>{
     //     -- Grabs name input value and calls generateGoblin
     const data = new FormData(newGoblinForm);
 
-    const newGoblinName = data.get('new-goblin-name');
+    let newGoblinName = data.get('new-goblin-name');
+
+    if (newGoblinName === '') {
+        newGoblinName = `New Goblin #${Math.ceil(Math.random() * 100)}`;
+    }
 
     const newGoblinObj = generateGoblin(newGoblinName);
 
@@ -61,7 +65,7 @@ function displayGoblins() {
         goblinDiv.addEventListener('click', (e)=> {
             //     -- Run math to see if Hero hit Goblin, is so decrement goblin HP
             //     -- Display alert if Hero hit Goblin
-            if (Math.random() > 0.25) {
+            if (Math.random() > eachGoblin.agility) {
                 eachGoblin.HP--;
                 alert('You hit the Goblin and did 1 Damage!');
             } else {

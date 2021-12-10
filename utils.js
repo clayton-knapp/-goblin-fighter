@@ -21,8 +21,8 @@ export function generateGoblin(newGoblinName) {
 
     //generate random Strength 1-3
     const randomStrength = Math.ceil(Math.random() * 3);
-    const randomAgility = Math.ceil(Math.random() * 3);
-    const randomDexterity = Math.ceil(Math.random() * 3);
+    const randomAgility = Math.random();
+    const randomDexterity = Math.random();
 
     const newGoblin = {
         name: newGoblinName,
