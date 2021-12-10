@@ -126,7 +126,7 @@ function displayGoblins() {
             displayDefeatedCount();
 
             // update the hero HP
-            displayHeroHP();
+            displayHero();
         });
         
         
@@ -135,8 +135,17 @@ function displayGoblins() {
     }
 }
 
-function displayHeroHP() {
+function displayHero() {
     heroHPEl.textContent = heroHP;
+    if (heroHP > 5) {
+        heroImg.classList.add('young');
+    }
+    if (heroHP > 0 && heroHP <= 5) {
+        heroImg.classList.add('old');
+    }
+    if (heroHP === 0){
+        heroImg.classList.add('dead-hero');
+    }
 }
 
 function displayDefeatedCount() {
@@ -146,4 +155,4 @@ function displayDefeatedCount() {
 //runs display function to show goblins, count, hp on load
 displayGoblins();
 displayDefeatedCount();
-displayHeroHP();
+displayHero();
