@@ -74,7 +74,7 @@ function displayGoblins() {
 
             //     -- Run math to see if Goblin hit Hero. if so decremenent hero HP by generated strength of goblin
             //     -- Display alert if Goblin hit Hero
-            if (Math.random() > 0.25) {
+            if (eachGoblin.dexterity > Math.random()) {
                 heroHP = heroHP - eachGoblin.strength;
                 alert(`The Goblin hit you and did ${eachGoblin.strength} Damage!`);
             } else {
