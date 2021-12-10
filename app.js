@@ -1,6 +1,7 @@
 // import functions and grab DOM elements
 
 import { renderGoblin } from './render-utils.js';
+import { generateGoblin } from './utils.js';
 
 const defeatedCountSpan = document.querySelector('#defeated-count-display');
 const newGoblinForm = document.querySelector('#new-goblin-form');
@@ -13,24 +14,13 @@ const goblinListEl = document.querySelector('.goblin-list');
 
 let heroHP = 10;
 let defeatedCount = 0;
-let goblinArr = [
-    {
-        name: 'Meep!',
-        HP: 3,
-        type: '👹'
-    },
-    {
-        name: 'Thwapp',
-        HP: 3,
-        type: '😈'
-    },
-    {
-        name: 'Gary',
-        HP: 3,
-        type: '👺'
-    }
-];
 
+let goblinArr = [
+    generateGoblin('Meep!'),
+    generateGoblin('Thwapp'),
+    generateGoblin('Gary')
+];
+console.log(goblinArr);
 // set event listeners 
   // get user input
   // use user input to update state 
@@ -40,27 +30,12 @@ let goblinArr = [
 newGoblinForm.addEventListener('submit', (e)=>{
     //     -- default form behavior
     e.preventDefault();
-    //     -- Grabs name input value and stores in a new goblin object
+    //     -- Grabs name input value and calls generateGoblin
     const data = new FormData(newGoblinForm);
-    let goblinName = data.get('new-goblin-name');
 
-    //generate random goblin type
-    let goblinType = '';
-    //generate random number between 1-4
-    let randomNumber = Math.ceil(Math.random() * 4);
+    const newGoblinName = data.get('new-goblin-name');
 
-    if (randomNumber === 1) {
-        goblinType = '👹';
-    } else if (randomNumber === 2) {
-        goblinType = '😈';
-    } else if (randomNumber === 3) {
-        goblinType = '👺';
-    } else if (randomNumber === 4) {
-        goblinType = '👾';
-    }
-
-
-    let newGoblinObj = { name: goblinName, HP: 3, type: goblinType };
+    const newGoblinObj = generateGoblin(newGoblinName);
 
     //     -- pushes new goblin object into goblin array
     goblinArr.push(newGoblinObj);
@@ -93,11 +68,11 @@ function displayGoblins() {
                 alert('You missed the Goblin and dealt no Damage');
             }
 
-            //     -- Run math to see if Goblin hit Hero. if so decremenent hero HP
+            //     -- Run math to see if Goblin hit Hero. if so decremenent hero HP by generated strength of goblin
             //     -- Display alert if Goblin hit Hero
             if (Math.random() > 0.25) {
-                heroHP--;
-                alert('The Goblin hit you and did 1 Damage!');
+                heroHP = heroHP - eachGoblin.strength;
+                alert(`The Goblin hit you and did ${eachGoblin.strength} Damage!`);
             } else {
                 alert('The Goblin missed you and dealt no Damage');
             }
@@ -106,7 +81,7 @@ function displayGoblins() {
             //         -- if so increment defeated Goblin count
             //         -- add class of dead - disable click, make opaque -- has to happen in render function????
             if (eachGoblin.HP === 0) {
-                console.log(eachGoblin);
+                // console.log(eachGoblin);
                 defeatedCount++;
             }
 
@@ -125,7 +100,7 @@ function displayGoblins() {
             //     -- Update the defeatedCount Display
             displayDefeatedCount();
 
-            // update the hero HP
+            // update the hero HP/Image
             displayHero();
         });
         
@@ -134,6 +109,7 @@ function displayGoblins() {
         goblinListEl.append(goblinDiv);
     }
 }
+
 
 function displayHero() {
     heroHPEl.textContent = heroHP;
