@@ -1,4 +1,7 @@
 // import functions and grab DOM elements
+
+import { renderGoblin } from './render-utils.js';
+
 const defeatedCountSpan = document.querySelector('#defeated-count-display');
 const newGoblinForm = document.querySelector('#new-goblin-form');
 const heroHPEl = document.querySelector('#hero-HP-display');
@@ -81,11 +84,10 @@ function displayGoblins() {
 
             //     -- Check to see if Goblin HP = 0
             //         -- if so increment defeated Goblin count
-            //         -- add class of dead - disable click, make opaque
+            //         -- add class of dead - disable click, make opaque -- has to happen in render function????
             if (eachGoblin.HP === 0) {
                 defeatedCount++;
                 goblinDiv.classList.add('dead-goblin'); //????????????????????????
-                console.log(goblinDiv);
             }
 
             //     -- Check to see if Hero HP = 0
@@ -121,37 +123,7 @@ function displayDefeatedCount() {
     defeatedCountSpan.textContent = defeatedCount;
 }
 
-function renderGoblin(eachGoblin) {
-    // -- takes in a goblin object (name + HP)
-    // -- creates 4 divs, 1 container, 1 p for HP, 1p for name, 1 for emoji
-    const goblinContainer = document.createElement('div');
-    const goblinNameEl = document.createElement('p');
-    const goblinHPEl = document.createElement('p');
-    const goblinEmoji = document.createElement('p');
-
-    // -- add text content of HP and name to p divs
-    goblinNameEl.textContent = eachGoblin.name;
-    goblinHPEl.textContent = 'HP: ' + eachGoblin.HP;
-    goblinEmoji.textContent = '👹';
-    // if (Math.random() >= 0.5){
-    //     goblinEmoji.textContent = '👹';
-    // } else {
-    //     goblinEmoji.textContent = '👿';
-    // }
-
-    //add classes to style
-    goblinContainer.classList.add('goblin-container');
-    goblinEmoji.classList.add('emoji');
-
-    // -- append the divs together
-    goblinContainer.append(goblinNameEl, goblinHPEl, goblinEmoji);
-
-    // -- return appended node
-    return goblinContainer;
-}
-
-
-//runs display function to show goblins on load
+//runs display function to show goblins, count, hp on load
 displayGoblins();
 displayDefeatedCount();
 displayHeroHP();

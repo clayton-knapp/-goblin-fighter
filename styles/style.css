@@ -155,7 +155,7 @@ section {
 
 .goblin-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
 }
@@ -183,7 +183,7 @@ section {
 }
 
 .dead-goblin {
-    opacity: .2;
+    opacity: .4;
     pointer-events: none;
 }
 
