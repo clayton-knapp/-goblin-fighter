@@ -191,7 +191,7 @@ section {
 .goblin-container {
     border: 5px solid red;
     width: 175px;
-    height: 175px;
+    height: 225px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -203,11 +203,13 @@ section {
 }
 .goblin-container p {
     padding: 0px;
-    margin: 3px;
+    margin: 0px;
 }
 
 .emoji {
     font-size: 4rem;
+    padding: 0px;
+    margin: 0px;
 }
 
 .dead-goblin {
@@ -227,4 +229,15 @@ section {
     background-image: url('../assets/wizard-dead.png');
     opacity: .5;
     transform: rotate(90deg)
+}
+
+.stats {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+
+#health-boost {
+    margin: 20px;
+    height: 30px;
 }

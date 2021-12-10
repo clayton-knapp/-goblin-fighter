@@ -9,12 +9,14 @@ const heroHPEl = document.querySelector('#hero-HP-display');
 const heroStrengthEl = document.querySelector('#hero-strength-display');
 const heroImg = document.querySelector('.hero-image');
 const goblinListEl = document.querySelector('.goblin-list');
+const healthBoostButton = document.querySelector('#health-boost');
 
 
 // let state
 
-let heroHP = 100;
+let heroHP = 10;
 let defeatedCount = 0;
+let heroStrength = 1;
 
 let goblinArr = [
     generateGoblin('Meep!'),
@@ -53,6 +55,16 @@ newGoblinForm.addEventListener('submit', (e)=>{
 
 });
 
+healthBoostButton.addEventListener('click', ()=> {
+    if (heroStrength > 1) {
+        heroHP = heroHP + 3;
+        heroStrength--;
+        displayHero();
+    } else {
+        alert('You only have 1 strength and can\'t boost your health');
+    }
+});
+
 function displayGoblins() {
     // -- clears the DOM
     goblinListEl.textContent = '';
@@ -63,18 +75,20 @@ function displayGoblins() {
         const goblinDiv = renderGoblin(eachGoblin);
 
         // -- Click on Goblin
-        goblinDiv.addEventListener('click', (e)=> {
+        goblinDiv.addEventListener('click', ()=> {
             //     -- Run math to see if Hero hit Goblin, is so decrement goblin HP
             //     -- Display alert if Hero hit Goblin
+            //if your roll of 10 sided dice is greater than or equal to goblin agility (also 10 sided dice roll), then you hit them. If you roll a 10 and they are a 10 you hit them
             if (Math.ceil(Math.random() * 10) >= eachGoblin.agility) {
-                eachGoblin.HP = eachGoblin.HP - (defeatedCount + 1);
-                alert(`You hit ${eachGoblin.name} and did ${defeatedCount + 1} Damage!`);
+                eachGoblin.HP = eachGoblin.HP - heroStrength;
+                alert(`You hit ${eachGoblin.name} and did ${heroStrength} Damage!`);
             } else {
                 alert(`You missed ${eachGoblin.name} and dealt no Damage`);
             }
 
             //     -- Run math to see if Goblin hit Hero. if so decremenent hero HP by generated strength of goblin
             //     -- Display alert if Goblin hit Hero
+            // If their dexterity (based on 10 sided dice toll) is greater than your 10 sided dice roll, then they hit you. If they are a 10 and you roll a 10, they don't hit you
             if (eachGoblin.dexterity > Math.ceil(Math.random() * 10)) {
                 heroHP = heroHP - eachGoblin.strength;
                 alert(`${eachGoblin.name} hit you and did ${eachGoblin.strength} Damage!`);
@@ -88,15 +102,17 @@ function displayGoblins() {
             if (eachGoblin.HP <= 0) {
                 // console.log(eachGoblin);
                 defeatedCount++;
+                heroStrength++;
             }
 
             //     -- Check to see if Hero HP = 0
             //         -- if so alert Game over
             //         -- make class of hero dead - rotate image?
-            if (heroHP === 0) {
+            if (heroHP <= 0) {
                 alert('You died! GAME OVER!');
                 heroImg.classList.add('dead-hero');
                 goblinListEl.classList.add('dead-goblin');
+                healthBoostButton.classList.add('dead-goblin');
             }
 
             //     -- Update the Goblin Display
@@ -118,14 +134,14 @@ function displayGoblins() {
 
 function displayHero() {
     heroHPEl.textContent = heroHP;
-    heroStrengthEl.textContent = defeatedCount + 1;
+    heroStrengthEl.textContent = heroStrength;
     if (heroHP > 5) {
         heroImg.classList.add('young');
     }
     if (heroHP > 0 && heroHP <= 5) {
         heroImg.classList.add('old');
     }
-    if (heroHP === 0){
+    if (heroHP <= 0){
         heroImg.classList.add('dead-hero');
     }
 }
